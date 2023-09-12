@@ -9,7 +9,21 @@ public class SignalGeneratorService
 {
     internal ImageModel GetSin(SignalModel sig)
     {
-        
+        if (sig == null) 
+            throw new ArgumentNullException(sig.GetType().ToString + "must contain a value");
+
+        if (sig.A <= 0)
+            throw new SinSigGenerator.Exception.AmplitudeException("Value must be grater than zero");
+
+        if (sig.Fd <= 0)
+            throw new SinSigGenerator.Exception.FreqDescException("Value must be grater than zero");
+
+        if (sig.Fs <= 0)
+            throw new SinSigGenerator.Exception.FreqSigException("Value must be grater than zero");
+
+        if (sig.N <= 0)
+            throw new SinSigGenerator.Exception.PeriodException("Value must be grater than zero");
+
         var graph = new Bitmap(Resolution.Width, Resolution.Height);
 
 
